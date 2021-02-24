@@ -9,8 +9,8 @@ class Api::ProductsController < ApplicationController
     render "doreetis.json.jb"
   end
 
-#   def random
-#     @random = [Product.find_by(id:)]
-#     render "random.json.jb"
-#   end
-# end
+  def random
+    @random = [Product.all.sample]
+    render "random.json.jb"
+  end
+end
