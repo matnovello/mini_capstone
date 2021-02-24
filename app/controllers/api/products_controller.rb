@@ -3,4 +3,14 @@ class Api::ProductsController < ApplicationController
     @all_products = Product.all
     render "all_products.json.jb"
   end
-end
+
+  def doreetis
+    @doreetis = Product.first
+    render "doreetis.json.jb"
+  end
+
+#   def random
+#     @random = [Product.find_by(id:)]
+#     render "random.json.jb"
+#   end
+# end
