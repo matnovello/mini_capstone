@@ -1,3 +1,2 @@
-{
-  all_products: @all_products,
-}
+ @all_products,
+
