@@ -5,12 +5,17 @@ class Api::ProductsController < ApplicationController
   end
 
   def doreetis
-    @doreetis = Product.first
+    @doreetis = Product.find_by(id: 1)
     render "doreetis.json.jb"
   end
 
   def random
     @random = [Product.all.sample]
     render "random.json.jb"
+  end
+
+  def display_products
+    @display_product = Product.find_by(id: params[:id])
+    render "product.json.jb"
   end
 end

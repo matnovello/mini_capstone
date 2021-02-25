@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     get "/products" => "products#all_products"
     get "/doreetis" => "products#doreetis"
-    get "/random"  => "products#random"
+    get "/random" => "products#random"
+    get "/choose_product" => "products#display_products"
   end
 end
