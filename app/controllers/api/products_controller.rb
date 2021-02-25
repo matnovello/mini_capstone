@@ -14,7 +14,7 @@ class Api::ProductsController < ApplicationController
     render "random.json.jb"
   end
 
-  def display_products
+  def display_product
     @display_product = Product.find_by(id: params[:id])
     render "product.json.jb"
   end
