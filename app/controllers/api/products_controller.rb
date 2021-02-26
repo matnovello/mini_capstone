@@ -31,8 +31,9 @@ class Api::ProductsController < ApplicationController
     @product.price = params[:price]
     @products.description = params[:description]
 
-    render "show.json.jb"
     @product.save
+
+    render "show.json.jb"
   end
 
   def destroy
