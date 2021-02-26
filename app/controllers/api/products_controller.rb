@@ -27,9 +27,9 @@ class Api::ProductsController < ApplicationController
     #gets product by it's id
     @product = Product.find_by(id: @id)
     #update product
-    @product.name = params[:name]
-    @product.price = params[:price]
-    @products.description = params[:description]
+    @product.name = params[:name] || @product.name
+    @product.price = params[:price] || @product.price
+    @products.description = params[:description] || @product.price
 
     @product.save
 
