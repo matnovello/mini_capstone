@@ -29,7 +29,7 @@ class Api::ProductsController < ApplicationController
     #update product
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
-    @products.description = params[:description] || @product.price
+    @product.description = params[:description] || @product.price
 
     @product.save
 
@@ -40,6 +40,6 @@ class Api::ProductsController < ApplicationController
     @id = params[:id]
     @product = Product.find_by(id: @id)
     @product.destroy
-    render "show.json.jb"
+    render json: { message: "destroy the boppa sean pizza" }
   end
 end
