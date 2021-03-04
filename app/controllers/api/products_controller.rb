@@ -17,9 +17,11 @@ class Api::ProductsController < ApplicationController
       image_url: params[:image_url],
       description: params[:description],
     })
-    @product.save
-
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { message: @product.errors.full_messages }
+    end
   end
 
   def update
@@ -31,9 +33,11 @@ class Api::ProductsController < ApplicationController
     @product.price = params[:price] || @product.price
     @product.description = params[:description] || @product.price
 
-    @product.save
-
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { errors: @product.errors.full_messages }
+    end
   end
 
   def destroy
