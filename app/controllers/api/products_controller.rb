@@ -4,10 +4,8 @@ class Api::ProductsController < ApplicationController
     # render "index.json.jb"
     if params[:discount] == "true"
       @products = Product.where("price < 20")
-    elsif params[:sort] == "price" && params[:sort_order] == "asc"
-      @products = Product.order({ price: :asc })
-    elsif params[:sort] == "price" && params[:sort_order] == "desc"
-      @products = Product.order({ price: :desc })
+    elsif params[:sort] && params[:sort_order]
+      @products = Product.order({ params[:sort] => params[:sort_order] })
     else
       @products = Product.all
     end
