@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
-  #possible belongs to connection?
   belongs_to :supplier
 
   validates :name, presence: true, uniqueness: true
@@ -21,11 +20,5 @@ class Product < ApplicationRecord
 
   def total
     return price + tax
-    return
-  end
-
-  def show_supplier
-    p "the name of this supplier is #{Supplier.find(supplier_id).name}"
-    return Supplier.find(supplier_id)
   end
 end
