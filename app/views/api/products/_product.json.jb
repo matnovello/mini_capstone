@@ -4,4 +4,9 @@
   price: product.price,
   description: product.description,
   image_url: "#",
+  supplier: {
+    name: product.show_supplier.name,
+    email: product.show_supplier.email,
+    phone_number: product.show_supplier.phone_number,
+  },
 }

@@ -25,6 +25,7 @@ class Product < ApplicationRecord
   end
 
   def show_supplier
-    return "the name of this supplier is #{Supplier.find(supplier_id).name}"
+    p "the name of this supplier is #{Supplier.find(supplier_id).name}"
+    return Supplier.find(supplier_id)
   end
 end
