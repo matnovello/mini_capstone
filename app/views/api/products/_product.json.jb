@@ -3,7 +3,10 @@
   name: product.name,
   price: product.price,
   description: product.description,
-  image: product.images,
+  image: {
+    url: product.images.first.url,
+    id: product.images.first.id,
+  },
   supplier: {
     name: product.supplier.name,
     email: product.supplier.email,
