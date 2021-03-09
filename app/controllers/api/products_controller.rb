@@ -2,12 +2,19 @@ class Api::ProductsController < ApplicationController
   def index
     # @products = Product.all
     # render "index.json.jb"
-    if params[:discount] == "true"
-      @products = Product.where("price < 20")
-    elsif params[:sort] && params[:sort_order]
-      @products = Product.order({ params[:sort] => params[:sort_order] })
+
+    # if params[:discount] == "true"
+    #   @products = Product.where("price < 20")
+    # elsif params[:sort] && params[:sort_order]
+    #   @products = Product.order({ params[:sort] => params[:sort_order] })
+    # else
+    @products = Product.all
+    # end
+
+    if current_user
+      p "you are logged in as #{current_user.name}"
     else
-      @products = Product.all
+      p "error, no user"
     end
   end
 
