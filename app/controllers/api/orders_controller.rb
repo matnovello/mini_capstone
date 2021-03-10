@@ -5,9 +5,6 @@ class Api::OrdersController < ApplicationController
         user_id: params[:user_id],
         product_id: params[:product_id],
         quantity: params{:quantity],
-        subtotal: product_id.price,
-        total: params[:total],
-        tax: params[:tax],
 
       )
     else
