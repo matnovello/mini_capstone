@@ -25,5 +25,7 @@ Rails.application.routes.draw do
 
     #create order
     post "/orders" => "orders#create"
+    #index
+    get "/orders" => "orders#index"
   end
 end

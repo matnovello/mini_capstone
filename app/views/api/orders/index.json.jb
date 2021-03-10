@@ -1,0 +1,19 @@
+@orders.map do |order|
+  {
+    user_id: order.user_id,
+
+    product_id: order.product_id,
+    quantity: order.quantity,
+    subtotal: order.subtotal,
+    total: order.total,
+    tax: order.tax,
+    user: {
+      name: order.user.name,
+      email: order.user.email,
+    },
+    product: {
+      name: order.product.name,
+      description: order.product.description,
+    },
+  }
+end
