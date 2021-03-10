@@ -10,7 +10,7 @@ class Api::OrdersController < ApplicationController
         tax: params[:tax],
       )
       order.save
-      render json: { message: order }
+      render "show.json.jb"
     else
       render json: { message: "No User. Login to submit your order" }
     end
@@ -20,6 +20,15 @@ class Api::OrdersController < ApplicationController
     if current_user
       @orders = Order.all
       render "index.json.jb"
+    else
+      render json: { message: "Error, No User" }
+    end
+  end
+
+  def show
+    if current_user
+      @order = Order.find(params[:id])
+      render "show.json.jb"
     else
       render json: { message: "Error, No User" }
     end
