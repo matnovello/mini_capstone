@@ -1,4 +1,6 @@
 class Api::OrdersController < ApplicationController
+  before_action :authenticate_user
+
   def create
     if current_user
       product = Product.find(params[:product_id])
