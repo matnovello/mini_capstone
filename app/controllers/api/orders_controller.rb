@@ -1,5 +1,5 @@
 class Api::OrdersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, only: [:destroy, :create, :update]
 
   def create
     if current_user
