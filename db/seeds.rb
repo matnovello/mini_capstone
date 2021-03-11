@@ -8,6 +8,6 @@
 sup = Supplier.new({ name: "house supplies mega corp", email: "supermegaconspiracycorp@gmail.com", phone_number: "8456778530" })
 sup.save
 
-ord = Order.new(user_id: 1, product_id: 21, quantity: 1)
+ord = Order.new(user_id: 1, product_id: 23, quantity: 1)
 
 ord.save

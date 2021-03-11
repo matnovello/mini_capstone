@@ -2,17 +2,20 @@ class Api::OrdersController < ApplicationController
   def create
     if current_user
       product = Product.find(params[:product_id])
-      calculated_total = params[:quantity] * product.price
 
-      order = Order.new(
+      calculated_subtotal = params[:quantity].to_i * product.price
+      calculated_tax = params[:quantity].to_i * product.tax
+      calculated_total = calculated_subtotal + calculated_tax
+
+      @order = Order.new(
         user_id: current_user.id,
         product_id: params[:product_id],
         quantity: params[:quantity],
-        subtotal: params[:subtotal],
-        total: params[:total],
-        tax: params[:tax],
+        subtotal: calculated_subtotal,
+        total: calculated_total,
+        tax: calculated_tax,
       )
-      order.save
+      @order.save
       render "show.json.jb"
     else
       render json: { message: "No User. Login to submit your order" }
@@ -21,10 +24,7 @@ class Api::OrdersController < ApplicationController
 
   def index
     if current_user
-      p current_user
-      p "CURRENT USER"
-      @orders = Order.all
-      render "index.json.jb"
+      @orders = Order.where(user_id: 1)
     else
       render json: { message: "Error, No User" }
     end
