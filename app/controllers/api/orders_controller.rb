@@ -37,7 +37,8 @@ class Api::OrdersController < ApplicationController
     if current_user.id == @order.user_id
       render "show.json.jb"
     else
-      render json: { message: "Error, No User" }
+      render json: { message: "#{current_user.name}
+       does not match #{@order.user.name}" }
     end
   end
 end
