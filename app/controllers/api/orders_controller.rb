@@ -24,15 +24,15 @@ class Api::OrdersController < ApplicationController
 
   def index
     if current_user
-      @orders = Order.where(user_id: 1)
+      @orders = Order.where(user_id: current_user.id)
     else
       render json: { message: "Error, No User" }
     end
   end
 
   def show
-    if current_user
-      @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    if current_user.id == @order.user_id
       render "show.json.jb"
     else
       render json: { message: "Error, No User" }

@@ -26,4 +26,9 @@ class ApplicationController < ActionController::Base
       render json: {}, status: :unauthorized
     end
   end
+  def authenticate_admin
+    unless admin 
+      render json: {}, access: denied
+  end
+
 end
