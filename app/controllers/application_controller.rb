@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin
     unless current_user && current_user.admin
-      render json: {}, access: denied
+      render json: { access: "denied" }
     end
   end
 end

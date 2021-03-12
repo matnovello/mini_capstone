@@ -1,5 +1,6 @@
 class Api::ProductsController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authenticate_user
+  before_action :authenticate_admin, only: [:destroy, :create, :update]
 
   def index
     # @products = Product.all
