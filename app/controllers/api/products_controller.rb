@@ -12,8 +12,13 @@ class Api::ProductsController < ApplicationController
     #   @products = Product.order({ params[:sort] => params[:sort_order] })
     # else
     @products = Product.all
+    # # # end
+    # if params[:category]
+    #   category = Category.find_by(name: params[:categories])
+    #   @products = products.category
+    # else
+    #   @products = Product.all
     # end
-
     if current_user
       p "you are logged in as #{current_user.name}"
     else

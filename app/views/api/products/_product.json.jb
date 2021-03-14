@@ -9,4 +9,5 @@
     email: product.supplier.email,
     phone_number: product.supplier.phone_number,
   },
+  product_categories: product.categories,
 }
