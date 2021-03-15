@@ -1,7 +1,11 @@
 class Api::CartedProductsController < ApplicationController
   def index
-    @carted_products = CartedProduct.all
-    render "index.json.jb"
+    if current_user
+      @carted_products = CartedProduct.where(user_id: current_user.id)
+      render "index.json.jb"
+    else
+      render json: { error: "you need to sign in" }
+    end
   end
 
   def create
