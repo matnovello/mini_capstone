@@ -18,4 +18,9 @@ class Api::CartedProductsController < ApplicationController
     @carted_product.save
     render "show.json.jb"
   end
+
+  def purchase
+    order = Order.new(user_id: current_user.id,
+    subo)
+  end
 end
