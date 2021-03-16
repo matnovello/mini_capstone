@@ -3,24 +3,31 @@ class Api::OrdersController < ApplicationController
 
   def create
     if current_user
-      product = Product.find(params[:product_id])
+      @carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
+      p @carted_products
+      calculated_subtotal = 0
+      calculated_tax = 0
+      calculated_total = 0
+      @carted_products.each do |carted_product|
+        calculated_subtotal += carted_product.product.price * carted_product.quantity
+        calculated_tax += carted_product.product.tax * carted_product.quantity
+        calculated_total += calculated_subtotal + calculated_tax
+      end
+      p "calculated subtotal is #{calculated_subtotal}"
+      p calculated_tax
+      p calculated_total
 
-      calculated_subtotal = params[:quantity].to_i * product.price
-      calculated_tax = params[:quantity].to_i * product.tax
-      calculated_total = calculated_subtotal + calculated_tax
-
-      @order = Order.new(
-        user_id: current_user.id,
-        product_id: params[:product_id],
-        quantity: params[:quantity],
-        subtotal: calculated_subtotal,
-        total: calculated_total,
-        tax: calculated_tax,
-      )
-      @order.save
-      render "show.json.jb"
-    else
-      render json: { message: "No User. Login to submit your order" }
+      # @order = Order.new(
+      #   user_id: current_user.id,
+      #   # quantity: carted_product.quantity,
+      #   # subtotal: calculated_subtotal,
+      #   # total: calculated_total,
+      #   # tax: calculated_tax,
+      # )
+      # @order.save!
+      # render "show.json.jb"
+      # else
+      #   render json: { message: "No User. Login to submit your order" }
     end
   end
 

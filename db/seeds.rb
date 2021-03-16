@@ -8,5 +8,5 @@
 sup = Supplier.new({ name: "house supplies mega corp", email: "supermegaconspiracycorp@gmail.com", phone_number: "8456778530" })
 sup.save
 
-c = CartedProduct.new(user_id: 1, product_id: 23, quantity: 3, status: "carted")
+c = CartedProduct.new(user_id: 2, product_id: 21, quantity: 2, status: "carted")
 c.save

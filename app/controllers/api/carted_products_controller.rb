@@ -1,7 +1,7 @@
 class Api::CartedProductsController < ApplicationController
   def index
     if current_user
-      @carted_products = CartedProduct.where(user_id: current_user.id)
+      @carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
       render "index.json.jb"
     else
       render json: { error: "you need to sign in" }
@@ -17,10 +17,5 @@ class Api::CartedProductsController < ApplicationController
     )
     @carted_product.save
     render "show.json.jb"
-  end
-
-  def purchase
-    order = Order.new(user_id: current_user.id,
-    subo)
   end
 end

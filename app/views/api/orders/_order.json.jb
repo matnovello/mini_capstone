@@ -1,17 +1,17 @@
 {
   user_id: order.user_id,
   order_id: order.id,
-  product: order.product,
-  quantity: order.quantity,
-  subtotal: order.subtotal,
-  total: order.total,
-  tax: order.tax,
-  user: {
-    name: order.user.name,
-    email: order.user.email,
-  },
-  product: {
-    name: order.product.name,
-    description: order.product.description,
-  },
+# product: order.product,
+# quantity: order.quantity,
+# subtotal: order.subtotal,
+# total: order.total,
+# tax: order.tax,
+# user: {
+#   name: order.user.name,
+#   email: order.user.email,
+# },
+# product: {
+#   name: order.product.name,
+#   description: order.product.description,
+# },
 }
