@@ -17,17 +17,19 @@ class Api::OrdersController < ApplicationController
       p calculated_tax
       p calculated_total
 
-      # @order = Order.new(
-      #   user_id: current_user.id,
-      #   # quantity: carted_product.quantity,
-      #   # subtotal: calculated_subtotal,
-      #   # total: calculated_total,
-      #   # tax: calculated_tax,
-      # )
-      # @order.save!
-      # render "show.json.jb"
-      # else
-      #   render json: { message: "No User. Login to submit your order" }
+      @order = Order.new(
+        user_id: current_user.id,
+        subtotal: calculated_subtotal,
+        total: calculated_total,
+        tax: calculated_tax,
+      )
+      @order.save!
+      @carted_products.each do |carted_product|
+        carted_product.update(status: "purchased", order_id: @order.id)
+      end
+      render "show.json.jb"
+    else
+      render json: { message: "No User. Login to submit your order" }
     end
   end
 
@@ -41,6 +43,7 @@ class Api::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @carted_products = CartedProduct.where(user_id: current_user.id)
     if current_user.id == @order.user_id
       render "show.json.jb"
     else
