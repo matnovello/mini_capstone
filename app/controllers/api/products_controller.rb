@@ -1,6 +1,6 @@
 class Api::ProductsController < ApplicationController
-  before_action :authenticate_user
-  before_action :authenticate_admin, only: [:destroy, :create, :update]
+  # before_action :authenticate_user
+  # before_action :authenticate_admin, only: [:destroy, :create, :update]
 
   def index
     # @products = Product.all
@@ -19,11 +19,11 @@ class Api::ProductsController < ApplicationController
     # else
     #   @products = Product.all
     # end
-    if current_user
-      p "you are logged in as #{current_user.name}"
-    else
-      p "error, no user"
-    end
+    # # if current_user
+    #   p "you are logged in as #{current_user.name}"
+    # else
+    #   p "error, no user"
+    # end
   end
 
   def show
@@ -36,8 +36,8 @@ class Api::ProductsController < ApplicationController
     @product = Product.new({
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
       description: params[:description],
+      supplier_id: params[:supplier_id],
     })
     if @product.save
       render "show.json.jb"

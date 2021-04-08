@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :product_categories
   has_many :images
   has_many :carted_products
-  has_many :orders, through: :carted_products
+  has_many :orders, through: :cartedproducts
   has_many :categories, through: :product_categories
 
   validates :name, presence: true, uniqueness: true
